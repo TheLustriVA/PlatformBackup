@@ -11,7 +11,9 @@ As I go through the sites I will be adding information about:
 ## Sites to scrape
 
 - [Gwasi.com](https://gwasi.com)
-  - Contains a much more easily accessible list of what content is available and whether or not it is on Soundgasm.
+  - Contains a much more easily accessible list of what content is available and whether or not it is on Soundgasm. Low-hanging fruit.
+- [Reddit.com](https://www.reddit.com/)
+  - We can use the Reddit API through the PRAW Python library to find links to soundgasm in submissions to the various NSFW audio subreddits.
 - [Soundgasm.com](https://soundgasm.com)
   - The site's creator has expressed his feelings that it is not worth obfuscating the content in a way that prevents scraping.
 
@@ -24,14 +26,14 @@ The front page of Gwasi pulls down two requests for json, one from [delta.json](
 The json from delta.json seemed cleaner and more complete, so at first we're using that. It returns a json document with the following top-level objects:
 
 ```javascript
-base	"8e9caeff4e"
-entries	[ […], […], […], […], […], […], […], […], […], […], … ]
-fills	Object { 5lwcs5: […], 8ri33v: […], 8yphfg: […], … }
-flairs	Object { "...wut?": "#dadada", "2nd Cumming": "#349e48", 2ndCumming: "#46d160", … }
-newest	1661312676
-oldest	1661301844
-removed	[ "34bbfl", "3ec45o", "3pfr1n", "4o35fy", "72upd5", "8mla8t", "b8qqr5", "faz22s", "fbtq2h", "fvibph", … ]
-scores	[ 3, 5, 0, 2, -1, 2, -3, 0, 7, 0, … ]
+base    "8e9caeff4e"
+entries [ […], […], […], […], […], […], […], […], […], […], … ]
+fills   Object { 5lwcs5: […], 8ri33v: […], 8yphfg: […], … }
+flairs  Object { "...wut?": "#dadada", "2nd Cumming": "#349e48", 2ndCumming: "#46d160", … }
+newest  1661312676
+oldest  1661301844
+removed [ "34bbfl", "3ec45o", "3pfr1n", "4o35fy", "72upd5", "8mla8t", "b8qqr5", "faz22s", "fbtq2h", "fvibph", … ]
+scores  [ 3, 5, 0, 2, -1, 2, -3, 0, 7, 0, … ]
 ```
 
 The "entries" object contained a list of the results for each audio that means the most for us. So while the whole document will be backed up, we'll only be using the "entries" key for actual scraping.
@@ -89,9 +91,9 @@ The value for the "entries" key is a list of lists, an example of their structur
 
 ```
 
-## The problem with this data
+#### The problem with this data
 
-Sadly this doesn't give us a link to any soundgasm pages or even tell us which users are on soundgasm or not. It is worth making a list of users:
+Sadly this doesn't give us a link to any soundgasm pages or even tell us which users are on soundgasm or not. It is worth making a list of users to try on soundgasm:
 
 ```python
 user_list = []
@@ -100,5 +102,16 @@ for entry in payload['entries']:
     user_list.append(entry[2])
 ```
 
-With this we can iterate through potential soundgasm user pages:
+### Soundgasm approach
 
+With the user list from gwasi we can iterate through potential soundgasm user pages:
+
+```python
+for user in user_list:
+    url = f"https://soundgasm.com/u/{user}"
+    try:
+        session = sesh.get(url, headers=headers)
+    except HTTPError as herror:
+        print(f"Could not find page for user: {user}: {herror}")
+        continue
+```
