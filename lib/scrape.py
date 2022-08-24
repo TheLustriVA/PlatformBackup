@@ -9,7 +9,7 @@ import json
 # import html5lib
 # from bs4 import BeautifulSoup
 
-def set_gwasi_details()->set:
+def set_gwasi_details()->list:
     """_Hard-coded details for pulling data from the front page of gwasi.com _
 
     Returns:
@@ -34,7 +34,9 @@ def set_gwasi_details()->set:
         "Sec-Fetch-Site" : "same-origin",
         "TE" : "trailers"
     } # Set up the headers for the session
-    return set(sesh, url, headers) # Return the session, url, and headers
+    return list([sesh, url, headers]) # Return the session, url, and headers
+
+# ToDo: Make sure there are generic forms of each of these functions.
 
 def set_custom_site_details(target_url:str, headers:dict)->set:
     """_Set the url and header details for pulling data from the front page of gwasi.com _
@@ -47,7 +49,7 @@ def set_custom_site_details(target_url:str, headers:dict)->set:
     # If we need to, we can set up an auto-rotater for different user agents to keep the sites from banning us.
 
     headers = {} # Set up the headers for the session
-    return set(sesh, url, headers) # Return the session, url, and headers
+    return list([sesh, url, headers]) # Return the session, url, and headers
 
 def site_request(sesh, url:str, headers:dict):
     """Generate a request to a site and return the response.
