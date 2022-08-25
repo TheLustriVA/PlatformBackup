@@ -43,15 +43,6 @@ The value for the "entries" key is a list of lists, an example of their structur
 ```json
 [
     [
-        "wsn9qb",
-        "GonewildAudible",
-        "AEMCE",
-        "",
-        "[FF4M] Helping You Rape Our Hot Virgin Roommate [FDom][fsub][MDom Listener][Script Fill][Collab][Rape][Noncon][Slaps][Cruel][Forced][Struggling][Doggy][Hand Gag][Muffled][Whimpers][Begging][Pain][Creampie][Rough][SFX][AMC][12m37s]",
-        1660938941,
-        100,
-    ],
-    [
         "wu8sqr",
         "gonewildaudio",
         "AGreatView",
