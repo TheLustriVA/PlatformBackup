@@ -129,3 +129,5 @@ dmypy.json
 
 # Custom stuff
 test.txt
+.vscode/
+data/
