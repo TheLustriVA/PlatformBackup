@@ -4,20 +4,36 @@ Backing-up soundgasm.com just in case it falls over for good this time.
 
 ![savegasm header](https://repository-images.githubusercontent.com/511645343/06b86374-c9b2-4564-92d0-f58450174aed)
 
-## 👋 Welcome!
+## 👋 Welcome
 
 Soundgasm has been a little sick recently so, without asking anyone, I've decided to archive as much of it as I can.
 
-## ToDo list:
--[] Code up a quick python scraper to grab a full dataset from gwasi.com
--[] Use that dataset to start backing up metadata to GitHub/GoogleSheets/Datasette
--[] Use the crawler to backup audios to Google Drive. 
+## ToDo list
+
+- [ ] Reach out to the creator of soundgasm.net for their take on the situation
+- [X] Code up a quick python scraper to grab a full dataset from gwasi.com
+- [X] Use that scrape to begin building a partial dataset of soundgasm users
+- [ ] Create a set of unit tests
+- [ ] Use the Reddit API to extend the dataset with more information
+- [ ] Use that dataset to start backing up metadata to GitHub/GoogleSheets/Datasette
+- [ ] Use the crawler to backup audios to Google Drive.
+
+### Minor to-do tasks
+
+- [ ] Test switching scraper to use httpx instead of requests-html
+- [ ] Change scraping algorithm to be faster and impact soundgasm's server/s less
+- [ ] Upload example environment variable files
+- [ ] Rename the scraper to be more generic
+
+### Potential future work
+
+- [ ] Refactor the scraper to publish a full release on PyPI
 
 ## Audio owners
 
 If you want access to an archive of your content, please submit an issue and we'll start sending out .zip files with everything in them.
 
-If you don't want your content archive, please submit an issue and I'll make sure your audios come off any lists we build.
+If you don't want your content archived, please submit an issue and I'll make sure your audios come off any lists we build.
 
 ## Contributors
 
