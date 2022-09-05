@@ -124,5 +124,6 @@ def get_gwasi_users()->list:
     user_list = []
 
     for entry in payload['entries']:
-        user_list.append(entry[2])
+        if entry[2] not in user_list:
+            user_list.append(entry[2])
     return user_list

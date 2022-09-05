@@ -1,6 +1,6 @@
 # Platform Backup
 
-Backing-up soundgasm.com just in case it falls over for good this time.
+Platform Backup provides a modern Python-based backup solution for customer-facing web services. It is designed to be easy to use and easy to extend.
 
 ![PB header](https://i.imgur.com/mu70AQX.png)
 

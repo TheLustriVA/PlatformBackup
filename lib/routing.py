@@ -4,7 +4,17 @@ import json
 # import csv
 # from pathlib import Path
 
-def send_data_to_file(data:dict, filename:str):
+def cache_data(data:list, filename="../data/cache.json"):
+    """Write progressive data to a file.
+    
+    Args:
+        data (_dict_): _The data to be written to a file._
+        filename (_str_): _The name of the file to be written to._
+    """
+    with open(filename, "w+", encoding='utf-8') as f:
+        json.dump(data, f, indent=2)
+
+def send_data_to_file(data:list, filename:str):
     """Write data to a file.
     
     Args:
@@ -14,7 +24,7 @@ def send_data_to_file(data:dict, filename:str):
     with open(filename, "w+", encoding='utf-8') as f:
         json.dump(data, f, indent=2)
         
-def send_data_to_stdout(data:dict):
+def send_data_to_stdout(data:list):
     """Write data to a file.
     
     Args:

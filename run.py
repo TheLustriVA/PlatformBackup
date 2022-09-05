@@ -2,6 +2,7 @@ from lib.scrape import get_gwasi_users as gg
 from lib.scrape import set_custom_site_details, site_request
 from lib.routing import send_data_to_file as s2f
 from lib.routing import send_data_to_stdout as s2s
+from lib.routing import cache_data
 from dotenv import load_dotenv	  #Remember to pip install python_dotenv first
 import os
 from alive_progress import alive_bar
@@ -35,11 +36,13 @@ def glance_soundgasm(limit=0):
     response_list = []
 
     with alive_bar(len(user_list)) as bar:
-        for user in user_list:
+        for idx, user in enumerate(user_list):
             target_url = f"https://soundgasm.net/u/{user}"
             details = set_custom_site_details(target_url, headers)
             response = site_request(details[0], details[1], details[2])
             response_list.append({ "user" : user, "result" : response.status_code })
+            if idx % 10 == 0:
+                cache_data(response_list)
             bar()
     return response_list
 
