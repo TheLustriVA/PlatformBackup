@@ -1,8 +1,11 @@
-from lib.scrape import get_gwasi_users as gg
+from lib.scrape import get_gwasi_users as gg, get_reddit_posts
 from lib.scrape import set_custom_site_details, site_request
+from lib.scrape import get_reddit_posts as gr
 from lib.routing import send_data_to_file as s2f
 from lib.routing import send_data_to_stdout as s2s
 from lib.routing import cache_data
+from lib.api import get_reddit_session
+from lib.api import get_subreddit_list as ggs
 from dotenv import load_dotenv	  #Remember to pip install python_dotenv first
 import os
 from alive_progress import alive_bar
@@ -48,5 +51,7 @@ def glance_soundgasm(limit=0):
 
 
 if __name__ == "__main__":
-    s2f(glance_soundgasm, "data/glance_soundgasm.json")
+    # s2f(glance_soundgasm, "data/glance_soundgasm.json")
     # s2s(glance_soundgasm())
+
+    get_reddit_posts(get_reddit_session(), ggs())

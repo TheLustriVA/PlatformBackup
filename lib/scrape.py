@@ -127,3 +127,26 @@ def get_gwasi_users()->list:
         if entry[2] not in user_list:
             user_list.append(entry[2])
     return user_list
+
+def get_reddit_posts(reddit_session, subreddits:list)->list:
+    reddit = reddit_session
+    subs = "+".join(subreddits)
+    print(subs)
+    
+    for submission in reddit.subreddit(subs).new(limit=10):
+        print(submission.title)
+        print(submission.id)
+        print(submission.url)
+        print(submission.permalink)
+        print(submission.score)
+        print(submission.num_comments)
+        print(submission.selftext)
+        print(submission.created_utc)
+        print(submission.author)
+        print(submission.subreddit)
+        print(submission.subreddit_id)
+        print(submission.subreddit_subscribers)
+        print(submission.subreddit_type)
+        print(submission.subreddit_name_prefixed)
+        print(submission.subreddit_subscribers)
+        print(submission.subreddit_type)
