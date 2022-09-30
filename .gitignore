@@ -130,3 +130,5 @@ dmypy.json
 # Custom stuff
 test.txt
 data/
+*/log.txt
+log.txt
