@@ -131,3 +131,5 @@ dmypy.json
 test.txt
 .vscode/
 data/
+log.txt
+*/log.txt
